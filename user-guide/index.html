@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://example.com/user-guide/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>User Guide - smh docs</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "User Guide";
+        var mkdocs_page_input_path = "user-guide.md";
+        var mkdocs_page_url = "/user-guide/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> smh docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../getting-started/">Getting started</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">User Guide</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#heres-the-core-syntax-of-smh">Here's the core syntax of smh:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#command-string">&lt;command> string</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#how-do-focusers-work">How do focusers work?</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#what-is-a-focus">What is a focus?</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#what-is-an-action">What is an action?</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#focuser-documentation">Focuser documentation</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#id-focuser">id (focuser)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#each">each</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#words">words</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#lines">lines</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ws">ws</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cols">cols</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#slice-focuser">slice (focuser)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#index-n">index ([n])</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sortedlexby">sortedLexBy</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sortedlex">sortedLex</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#minlexby">minLexBy</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#maxlexby">maxLexBy</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#minlex">minLex</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#maxlex">maxLex</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sortedby">sortedBy</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sorted">sorted</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#minby">minBy</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#maxby">maxBy</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#min">min</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#max">max</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#len-focuser">len (focuser)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sum">sum</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#product">product</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#average">average</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#add-focuser">add (focuser)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sub-focuser">sub (focuser)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mult-focuser">mult (focuser)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#div-focuser">div (focuser)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pow-focuser">pow (focuser)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#abs-focuser">abs (focuser)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sign-focuser">sign (focuser)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#if">if</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#logical-focusers">Logical focusers</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#regex">regex</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#filter">filter</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#to-focuser">to (focuser)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#action-documentation">Action documentation</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#get-tree">get-tree</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#get">get</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#over">over</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#set">set</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#mapping-documentation">Mapping documentation</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#id-mapping">id (mapping)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#reverse">reverse</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#len-mapping">len (mapping)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#map">map</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#append">append</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#prepend">prepend</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#upper">upper</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#lower">lower</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#add-mapping">add (mapping)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sub-mapping">sub (mapping)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mult-mapping">mult (mapping)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#div-mapping">div (mapping)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pow-mapping">pow (mapping)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#abs-mapping">abs (mapping)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sign-mapping">sign (mapping)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#slice-mapping">slice ({}) (mapping)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sortlexby">sortLexBy</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sortlex">sortLex</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sortby">sortBy</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sort">sort</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#to-mapping">to (mapping)</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">About</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../release-notes/">Release notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../license/">License</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../contributing/">Contributing</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">smh docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">User Guide</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1"></h1>
+<h2 id="overview">Overview</h2>
+<h3 id="heres-the-core-syntax-of-smh">Here's the core syntax of smh:</h3>
+<p><code>smh &lt;command&gt; [input]</code></p>
+<ul>
+<li>&lt;command&gt; is a string specifiyng what smh should do with the input string.</li>
+<li>If the input string is not given, smh gets input from stdin.</li>
+</ul>
+<h3 id="command-string">&lt;command&gt; string</h3>
+<p>The command string consists of two parts, separated by the pipe symbol "|""</p>
+<p>The first part is a list of focusers, separated by the dot symbol "."</p>
+<p>The second part is an action.</p>
+<p>The idea is that we use focusers to nail down on the part of the string that we want to access, and then the action that we want to perform on it.</p>
+<p>For example: <code>smh 'words|get' "hello world"</code> - 'words' focuser focuses on all words within the string, the get action prints them to the screen.</p>
+<h4 id="how-do-focusers-work">How do focusers work?</h4>
+<p>Each focuser in the focuser list can be thought of as a function that takes in a focus and returns a list of new focuses. Each focuser represents a focusing step. During each step, every active focus gets fed into the current focuser and all the new focuses that are produces go to the next step.</p>
+<h4 id="what-is-a-focus">What is a focus?</h4>
+<p>Focuses can be devided into two groups:</p>
+<ul>
+<li>
+<p><strong>Updatable focuses</strong> - represent some part of the input string, these can be updated through actions, to get an updated input string.</p>
+</li>
+<li>
+<p><strong>Non-updatable focuses</strong> - these represent read-only data, obtained from the input string, and thus can't be updated, only read.</p>
+</li>
+</ul>
+<p>Focuses are further divided into two types:</p>
+<ul>
+<li><strong>Strings</strong> - represent string data.</li>
+<li><strong>Lists</strong> - represent lists of sub-focuses.</li>
+</ul>
+<p>For example the "words" focuser takes in a <strong>String</strong> focus and produces <strong>Updatable</strong> <strong>String</strong> focuses for each word in it.</p>
+<p>At the very start we have one active <strong>Updatable String</strong> focus which represents the whole input string.</p>
+<p>For the description of available focusers visit <a href="./#focuser-documentation">Focuser documentation</a></p>
+<h4 id="what-is-an-action">What is an action?</h4>
+<p>Action is the part of the command string that goes after the pipe symbol. Actions can be used to display parts of input, or change them.</p>
+<p>For the description of available actions visit<a href="./#action-documentation">Action documentation</a></p>
+<h2 id="focuser-documentation">Focuser documentation</h2>
+<h3 id="id-focuser">id (focuser)</h3>
+<p>"id" is the simplest focuser possible, it returns the same focus that was given to it. It can be useful if you want to focus on the whole input string.</p>
+<pre><code>$ smh 'id|get' &quot;hello world&quot;
+hello world
+</code></pre>
+<h3 id="each">each</h3>
+<p>"each" focuses on each element of a <strong>List</strong>, or every character in a <strong>String</strong>.</p>
+<pre><code>$ smh 'each|get' &quot;hello&quot;
+h
+e
+l
+l
+o
+</code></pre>
+<h3 id="words">words</h3>
+<p>"words" focuses on each word within a <strong>String</strong>.</p>
+<pre><code>$ smh 'words|get' &quot;hello world&quot;
+hello
+world
+</code></pre>
+<h3 id="lines">lines</h3>
+<p>"lines" focuses on every line within the input string.</p>
+<pre><code>$ printf &quot;hello\nworld&quot; | smh 'lines|get'
+hello
+world
+</code></pre>
+<h3 id="ws">ws</h3>
+<p>"ws" focuses on consequetive strings of whitespace characters.</p>
+<pre><code>$ smh '&lt;ws&gt;.len|get' &quot;a b c d e&quot;
+4
+</code></pre>
+<h3 id="cols">cols</h3>
+<p>"cols" focuses on every column within the input string. Columns are represented as <strong>Lists</strong> of words.</p>
+<pre><code>$ smh '&lt;cols&gt;.[0]|get' &quot;hello my\nname is Dani&quot;
+hello
+name
+</code></pre>
+<h3 id="slice-focuser">slice (focuser)</h3>
+<p>"slice" ({}) focuses on a part of a <strong>String</strong> or a <strong>List</strong>, using a python-like syntax.</p>
+<pre><code>$ smh '{1:3}|get' &quot;hello&quot;
+el
+</code></pre>
+<pre><code>$ smh '{2:}|get' &quot;hello&quot;
+llo
+</code></pre>
+<pre><code>$ smh '{:-2}|get' &quot;hello&quot;
+hel
+</code></pre>
+<pre><code>$ smh '{:2,3:}|get' &quot;hello&quot;
+helo
+</code></pre>
+<h3 id="index-n">index ([n])</h3>
+<p>"index" focuses on the nth element of a <strong>List</strong> or a <strong>String</strong>.</p>
+<pre><code>$ smh '[1]|get' &quot;hello&quot;
+e
+</code></pre>
+<h3 id="sortedlexby">sortedLexBy</h3>
+<p>"sortedLexBy" focuses on the lexicographically sorted version of a <strong>List</strong> or a <strong>String</strong>, using another focuser as a key.</p>
+<pre><code>$ mh 'sortedLexBy id|get' &quot;hello&quot;
+ehllo
+</code></pre>
+<p><em>Note:<br />
+"sortedLexBy" parses the next focuser</em> <strong><em>non-greedily</em></strong> <em>, i.e.<br />
+"sortedLexBy focuser1.focuser2 == (sortedLexBy focuser1).focuser2"</em><br />
+<em>To use multiple focusers, use parenthesis "sortedLexBy (focuser1.focuser2)"</em></p>
+<h3 id="sortedlex">sortedLex</h3>
+<p>A shorthand for "sortedLexBy id"</p>
+<h3 id="minlexby">minLexBy</h3>
+<p>"minLexBy" focuses on the lexicographically smallest element in a <strong>List</strong> or a <strong>String</strong>, using another focuser as a key.</p>
+<pre><code>$ smh '&lt;words&gt;.minLexBy id|get' &quot;hello my name is Dani&quot;
+Dani
+</code></pre>
+<p><em>Note:<br />
+"minLexBy" parses the next focuser</em> <strong><em>non-greedily</em></strong> <em>, i.e.<br />
+"minLexBy focuser1.focuser2 == (minLexBy focuser1).focuser2"</em><br />
+<em>To use multiple focusers, use parenthesis "minLexBy (focuser1.focuser2)"</em></p>
+<h3 id="maxlexby">maxLexBy</h3>
+<p>"maxLexBy" focuses on the lexicographically largest element in a <strong>List</strong> or a <strong>String</strong>, using another focuser as a key.</p>
+<pre><code>$ smh '&lt;words&gt;.maxLexBy id|get' &quot;hello my name is Dani&quot;
+name
+</code></pre>
+<p><em>Note:<br />
+"maxLexBy" parses the next focuser</em> <strong><em>non-greedily</em></strong> <em>, i.e.<br />
+"maxLexBy focuser1.focuser2 == (maxLexBy focuser1).focuser2"</em><br />
+<em>To use multiple focusers, use parenthesis "maxLexBy (focuser1.focuser2)"</em></p>
+<h3 id="minlex">minLex</h3>
+<p>A shorthand for "minLexBy id"</p>
+<h3 id="maxlex">maxLex</h3>
+<p>A shorthand for "maxLexBy id"</p>
+<h3 id="sortedby">sortedBy</h3>
+<p>"sortedBy" focuses on the sorted version of a <strong>List</strong> or a <strong>String</strong>, using another focuser as a key.</p>
+<pre><code>$ smh '&lt;words&gt;.sortedBy len|get' &quot;hello my name is Dani&quot;
+my
+is
+name
+Dani
+hello
+</code></pre>
+<p><em>Note:<br />
+"sortedBy" parses the next focuser</em> <strong><em>non-greedily</em></strong> <em>, i.e.<br />
+"sortedBy focuser1.focuser2 == (sortedBy focuser1).focuser2"</em><br />
+<em>To use multiple focusers, use parenthesis "sortedBy (focuser1.focuser2)"</em></p>
+<p><em>Note:<br />
+"sortedBy" compares focuses by trying to parse them as numbers and comparing those.<br />
+Focuses which which cannot be parsed as numbers are not sorted.</em></p>
+<h3 id="sorted">sorted</h3>
+<p>A shorthand for "sortedBy id"</p>
+<h3 id="minby">minBy</h3>
+<p>"minBy" focuses on the first smallest element in a <strong>List</strong> or a <strong>String</strong>, using another focuser as a key.</p>
+<pre><code>$ smh '&lt;words&gt;.minBy len|get' &quot;Hello my name is Dani&quot;
+my
+</code></pre>
+<p><em>Note:<br />
+"minBy" parses the next focuser</em> <strong><em>non-greedily</em></strong> <em>, i.e.<br />
+"minBy focuser1.focuser2 == (minBy focuser1).focuser2"</em><br />
+<em>To use multiple focusers, use parenthesis "minBy (focuser1.focuser2)"</em></p>
+<p><em>Note:<br />
+"minBy" compares focuses by trying to parse them as numbers and comparing those.<br />
+Focuses which which cannot be parsed as numbers are not sorted.</em></p>
+<h3 id="maxby">maxBy</h3>
+<p>"maxBy" focuses on the first largest element in a <strong>List</strong> or a <strong>String</strong>, using another focuser as a key.</p>
+<p><em>Note:<br />
+"maxBy" parses the next focuser</em> <strong><em>non-greedily</em></strong> <em>, i.e.<br />
+"maxBy focuser1.focuser2 == (maxBy focuser1).focuser2"</em><br />
+<em>To use multiple focusers, use parenthesis "maxBy (focuser1.focuser2)"</em></p>
+<p><em>Note:<br />
+"maxBy" compares focuses by trying to parse them as numbers and comparing those.<br />
+Focuses which which cannot be parsed as numbers are not sorted.</em></p>
+<pre><code>$ smh '&lt;words&gt;.maxBy len|get' &quot;Hello my name is Dani&quot;
+Hello
+</code></pre>
+<p><em>Note:<br />
+"maxBy" parses the next focuser</em> <strong><em>non-greedily</em></strong> <em>, i.e.<br />
+"maxBy focuser1.focuser2 == (maxBy focuser1).focuser2"</em><br />
+<em>To use multiple focusers, use parenthesis "maxBy (focuser1.focuser2)"</em></p>
+<h3 id="min">min</h3>
+<p>A shorthand for "minBy id"</p>
+<pre><code>$ smh 'min|get' &quot;123&quot;
+1
+</code></pre>
+<h3 id="max">max</h3>
+<p>A shorthand for "maxBy id"</p>
+<pre><code>$ smh 'max|get' &quot;123&quot;
+3
+</code></pre>
+<h3 id="len-focuser">len (focuser)</h3>
+<p>"len" focuses on the number of elements in a <strong>List</strong> or a <strong>String</strong>.</p>
+<pre><code>$ smh 'words.len|get' &quot;hello&quot;
+5
+</code></pre>
+<p><em>Note:<br />
+"len" produces a</em> <strong><em>Non-updatable</em></strong> <em>focus.</em></p>
+<h3 id="sum">sum</h3>
+<p>"sum" focuses on the sum of all elements in a <strong>List</strong> or a <strong>String</strong>, that can be parsed as numbers.</p>
+<pre><code>$ smh '&lt;words&gt;.sum|get' &quot;1 2 3&quot;
+6
+</code></pre>
+<p><em>Note:<br />
+"sum" produces a</em> <strong><em>Non-updatable</em></strong> <em>focus.</em></p>
+<h3 id="product">product</h3>
+<p>"product" focuses on the product of all elements in a <strong>List</strong> or a <strong>String</strong>, that can be parsed as numbers.</p>
+<pre><code>$ smh '&lt;words&gt;.product|get' &quot;1 2 3&quot;
+6
+</code></pre>
+<p><em>Note:<br />
+"product" produces a</em> <strong><em>Non-updatable</em></strong> <em>focus.</em></p>
+<h3 id="average">average</h3>
+<p>"average" focuses on the average of all elements in a <strong>List</strong> or a <strong>String</strong>, that can be parsed as numbers.</p>
+<pre><code>$ smh '&lt;words&gt;.average 0|get' &quot;1 2 3&quot;
+2
+</code></pre>
+<p><em>Note:<br />
+"average" produces a</em> <strong><em>Non-updatable</em></strong> <em>focus.</em></p>
+<p><em>Note:<br />
+"average" takes in a optional parameter which defines the default value when no elements that could be parsed as numbers are found. If no default value is given, it will be 0.</em></p>
+<h3 id="add-focuser">add (focuser)</h3>
+<p>"add" adds a number to a focus if it can be parsed as a number.</p>
+<pre><code>$ smh 'words.add 1|get' &quot;1 2 3 4 5&quot;
+2
+3
+4
+5
+6
+</code></pre>
+<p><em>Note:<br />
+"add" produces a</em> <strong><em>Non-updatable</em></strong> <em>focus.</em></p>
+<h3 id="sub-focuser">sub (focuser)</h3>
+<p>"sub" subtracts a number from a focus if it can be parsed as a number.</p>
+<pre><code>$ smh 'words.sub 1|get' &quot;1 2 3 4 5&quot;
+0
+1
+2
+3
+4
+</code></pre>
+<p><em>Note:<br />
+"sub" produces a</em> <strong><em>Non-updatable</em></strong> <em>focus.</em></p>
+<h3 id="mult-focuser">mult (focuser)</h3>
+<p>"mult" multiplies a number to a focus if it can be parsed as a number.</p>
+<pre><code>$ smh 'words.mult 2|get' &quot;1 2 3 4 5&quot;
+2
+4
+6
+8
+10
+</code></pre>
+<p><em>Note:<br />
+"mult" produces a</em> <strong><em>Non-updatable</em></strong> <em>focus.</em></p>
+<h3 id="div-focuser">div (focuser)</h3>
+<p>"div" divides a focus by a number if the focus can be parsed as a number.</p>
+<pre><code>$ smh 'words.div 2|get' &quot;1 2 3 4 5&quot;
+0.5
+1
+1.5
+2
+2.5
+</code></pre>
+<p><em>Note:<br />
+"div" produces a</em> <strong><em>Non-updatable</em></strong> <em>focus.</em></p>
+<h3 id="pow-focuser">pow (focuser)</h3>
+<p>"pow" raises a focus to a power if the focus can be parsed as a number.</p>
+<pre><code>$ smh 'words.pow 2|get' &quot;1 2 3 4 5&quot;
+1
+4
+9
+16
+25
+</code></pre>
+<p><em>Note:<br />
+"pow" produces a</em> <strong><em>Non-updatable</em></strong> <em>focus.</em></p>
+<h3 id="abs-focuser">abs (focuser)</h3>
+<p>"abs" focuses on the absolute value of a focus if it can be parsed as a number.</p>
+<pre><code>$ smh 'words.abs|get' &quot;-1 -2 -3 -4 -5&quot;
+1
+2
+3
+4
+5
+</code></pre>
+<p><em>Note:<br />
+"abs" produces a</em> <strong><em>Non-updatable</em></strong> <em>focus.</em></p>
+<h3 id="sign-focuser">sign (focuser)</h3>
+<p>"sign" focuses on the sign of a focus if it can be parsed as a number.</p>
+<pre><code>$ smh 'words.sign|get' &quot;-1 2 -3 0 -5&quot;
+-1
+1
+-1
+0
+-1
+</code></pre>
+<h3 id="if">if</h3>
+<p>"if" conditionally focuses on the same focus that it was given, if it passes a provided <strong>condition</strong>.</p>
+<p>Valid <strong>conditions</strong> satisfy the following non-formal grammar:<br />
+<strong>&lt;condition&gt;</strong> := &lt;condition_long&gt;<br />
+<strong>&lt;condition&gt;</strong> := one or more comparisons, or short comparisons, optionally in parenthesis, separated by "&amp;&amp;" or "||"<br />
+<strong>&lt;comparison&gt;</strong> := [&lt;quantor&gt;] [&lt;value&gt;] &lt;operator&gt; [&lt;quantor&gt;] &lt;value&gt;<br />
+<strong>&lt;short_comparison&gt;</strong> := [&lt;quantor&gt;]  &lt;focuser&gt;<br />
+<strong>&lt;value&gt;</strong> := &lt;focusers&gt; | &lt;string_in_quotes&gt; | &lt;number&gt;<br />
+<strong>&lt;operator&gt;</strong> := "=" | "!=" | "&lt;" | "&gt;" | "&lt;=" | "&gt;="<br />
+<strong>&lt;quantor&gt;</strong> := "any" | "all"<br />
+<strong>&lt;focuser&gt;</strong> := any valid focuser<br />
+<strong>&lt;focusers&gt;</strong> := one or more valid focusers separated by dot '.'</p>
+<pre><code>$ smh 'words.if len&gt;3|get' &quot;hello world my name is Dani&quot;
+hello
+world
+name
+Dani
+</code></pre>
+<pre><code>$ smh 'words.if &gt;5|get' &quot;3 4 5 6 7&quot;
+6
+7
+</code></pre>
+<pre><code>$ smh 'words.if abs=id &amp;&amp; != 0|get' &quot;-1 -2 0 1 2&quot;
+1
+2
+</code></pre>
+<pre><code>$ smh 'words if any=&quot;h&quot;|get' &quot;hello world my name is Dani&quot;
+hello
+</code></pre>
+<pre><code>$ smh 'words' if all isLower' &quot;hello world my name is Dani&quot;
+hello
+world
+my
+name
+is
+</code></pre>
+<h3 id="logical-focusers">Logical focusers</h3>
+<p>Logical focusers take in a <strong>String</strong> and produce a <strong><em>Non-updatable</em></strong> focus which is equal to either "1" or "0".
+They are used in short-form if conditions.</p>
+<p>Logical focusers include: "isUpper", "isLower", "isDigit", "isAlpha", "isAlphaNum", "isSpace", "contains", "startsWith", "endsWith".</p>
+<h3 id="regex">regex</h3>
+<p>"regex" takes in a POSIX style regex and focuses on all substrings of a <strong>String</strong> focus that match it.</p>
+<pre><code>$ smh 'words.regex &quot;[a-z]+&quot;|get' &quot;hello world my name is Dani&quot;
+hello
+world
+my
+name
+is
+ani
+</code></pre>
+<h3 id="filter">filter</h3>
+<p>"filter" works like "if", but instead of filtering the focus itself, it filters elements of a <strong>List</strong> or a <strong>String</strong> and focuses on a sub-list or a sub-string, that contains all the elements that passed.</p>
+<pre><code>$ smh '&lt;words&gt;.filter len&gt;3|get' &quot;hello world my name is Dani&quot;
+hello
+world
+name
+Dani
+</code></pre>
+<h3 id="to-focuser">to (focuser)</h3>
+<p>"to" can convert a <strong>mapping</strong> list into a <strong><em>Non-updatable</em></strong> focuser.</p>
+<pre><code>$ smh '&lt;words&gt;.to reverse|get' &quot;hello world my name is Dani&quot;
+Dani
+is
+name
+my
+world
+hello
+</code></pre>
+<p><em>Note:<br />
+For more information on mappings, visit <a href="./#mapping-documentation">Mapping documentation</a></em></p>
+<h2 id="action-documentation">Action documentation</h2>
+<h3 id="get-tree">get-tree</h3>
+<p>"get-tree" displays the list of all focuses active at the end.</p>
+<pre><code>$ smh 'words|get-tree' &quot;hello world my name is Dani&quot;
+[&quot;hello&quot;,&quot;world&quot;,&quot;my&quot;,&quot;name&quot;,&quot;is&quot;,&quot;Dani&quot;]
+</code></pre>
+<h3 id="get">get</h3>
+<p>"get" displays all strings found in all focuses active at the end, one string per line.</p>
+<pre><code>$ smh 'words|get' &quot;hello world my name is Dani&quot;
+hello
+world
+my
+name
+is
+Dani
+</code></pre>
+<h3 id="over">over</h3>
+<p>"over" takes in a list of mappings separated by "&gt;", applies them to the focuses and reconstructs the original string.</p>
+<pre><code>$ smh 'words|over reverse' &quot;hello world my name is Dani&quot;
+olleh dlrow ym eman si inaD
+</code></pre>
+<p><em>Note:<br />
+For more information on mappings, visit <a href="./#mapping-documentation">Mapping documentation</a></em></p>
+<h3 id="set">set</h3>
+<p>"set" takes in a string and sets every string found in all focuses active at the end to that string.</p>
+<pre><code>$ smh 'words|set &quot;hello&quot;' &quot;hello world my name is Dani&quot;
+hello hello hello hello hello hello
+</code></pre>
+<h2 id="mapping-documentation">Mapping documentation</h2>
+<h3 id="id-mapping">id (mapping)</h3>
+<p>"id" is the simplest mapping possible, it returns the same focus that was given to it.</p>
+<pre><code>$ smh 'id|over id' &quot;hello world&quot;
+hello world
+</code></pre>
+<h3 id="reverse">reverse</h3>
+<p>"reverse" reverses a <strong>List</strong> or a <strong>String</strong>.</p>
+<pre><code>$ smh '&lt;words&gt;|over reverse' &quot;hello world my name is Dani&quot;
+Dani is name my world hello
+</code></pre>
+<h3 id="len-mapping">len (mapping)</h3>
+<p>"len" sets a <strong>String</strong> focus to its length.</p>
+<pre><code>$ smh 'words|over len' &quot;hello world my name is Dani&quot;
+5 5 2 4 2 4
+</code></pre>
+<h3 id="map">map</h3>
+<p>"map" takes in a mapping and applies it to every element of a <strong>List</strong> or a <strong>String</strong>.</p>
+<p><em>Note:<br />
+"map" takes in a mapping</em> <strong><em>non-greedily</em></strong> <em>, i.e.<br />
+"map mapping1&gt;mapping2" == "(map mapping1)&gt;mapping2"</em>
+<em>To use multiple mappings, use parenthesis "map (mapping1&gt;mapping2)"</em></p>
+<pre><code>$ smh '&lt;words&gt;|over map len' &quot;hello world my name is Dani&quot;
+5 5 2 4 2 4
+</code></pre>
+<h3 id="append">append</h3>
+<p>"append" takes in a string, number or a focuser and appends it to a <strong>String</strong> focus.</p>
+<pre><code>$ smh 'words|over append &quot;!&quot;' &quot;hello world my name is Dani&quot;
+hello! world! my! name! is! Dani!
+</code></pre>
+<pre><code>$ smh 'words|over append len' &quot;hello world my name is Dani&quot;
+hello5 world5 my2 name4 is2 Dani4
+</code></pre>
+<h3 id="prepend">prepend</h3>
+<p>"prepend" takes in a string, number or a focuser and prepends it to a <strong>String</strong> focus.</p>
+<pre><code>$ smh 'words|over prepend &quot;!&quot;' &quot;hello world my name is Dani&quot;
+!hello !world !my !name !is !Dani
+</code></pre>
+<pre><code>$ smh 'words|over prepend len' &quot;hello world my name is Dani&quot;
+5hello 5world 2my 4name 2is 4Dani
+</code></pre>
+<h3 id="upper">upper</h3>
+<p>"upper" sets a <strong>String</strong> focus to its upper case.</p>
+<pre><code>$ smh 'words|over upper' &quot;hello world my name is Dani&quot;
+HELLO WORLD MY NAME IS DANI
+</code></pre>
+<h3 id="lower">lower</h3>
+<p>"lower" sets a <strong>String</strong> focus to its lower case.</p>
+<pre><code>$ smh 'words|over lower' &quot;HELLO WORLD MY NAME IS DANI&quot;
+hello world my name is dani
+</code></pre>
+<h3 id="add-mapping">add (mapping)</h3>
+<p>"add" adds a number to a focus if it can be parsed as a number.</p>
+<pre><code>$ smh 'words|over add 1' &quot;1 2 3&quot;
+2 3 4
+</code></pre>
+<h3 id="sub-mapping">sub (mapping)</h3>
+<p>"sub" subtracts a number from a focus if it can be parsed as a number.</p>
+<pre><code>$ smh 'words|over sub 1' &quot;1 2 3&quot;
+0 1 2
+</code></pre>
+<h3 id="mult-mapping">mult (mapping)</h3>
+<p>"mult" multiplies a focus by a number if it can be parsed as a number.</p>
+<pre><code>$ smh 'words|over mult 2' &quot;1 2 3&quot;
+2 4 6
+</code></pre>
+<h3 id="div-mapping">div (mapping)</h3>
+<p>"div" divides a focus by a number if it can be parsed as a number.</p>
+<pre><code>$ smh 'words|over div 2' &quot;1 2 3&quot;
+0.5 1 1.5
+</code></pre>
+<h3 id="pow-mapping">pow (mapping)</h3>
+<p>"pow" raises a focus to a power if the focus can be parsed as a number.</p>
+<pre><code>$ smh 'words|over pow 2' &quot;1 2 3 4 5&quot;
+1 4 9 16 25
+</code></pre>
+<h3 id="abs-mapping">abs (mapping)</h3>
+<p>"abs" sets the focus to its absolute value if it can be parsed as a number.</p>
+<pre><code>$ smh 'words|over abs' &quot;-1 -2 -3 -4 -5&quot;
+1 2 3 4 5
+</code></pre>
+<h3 id="sign-mapping">sign (mapping)</h3>
+<p>"sign" sets the focus to its sign if it can be parsed as a number.</p>
+<pre><code>$ smh 'words|over sign' &quot;1 -2 3 0 -5&quot;
+1 -1 1 0 -1
+</code></pre>
+<h3 id="slice-mapping">slice ({}) (mapping)</h3>
+<p>"slice" sets a <strong>String</strong> focus to its part according to a python-like syntax.</p>
+<pre><code>$ smh 'words|over {1:3}' &quot;hello&quot;
+el
+</code></pre>
+<pre><code>$ smh 'words|over {2:}' &quot;hello&quot;
+llo
+</code></pre>
+<pre><code>$ smh 'words|over {:-2}' &quot;hello&quot;
+hel
+</code></pre>
+<pre><code>$ smh 'words|over {:2,3:}' &quot;hello&quot;
+helo
+</code></pre>
+<h3 id="sortlexby">sortLexBy</h3>
+<p>"sortLexBy" sorts a <strong>List</strong> or a <strong>String</strong> focus lexicographically using another focuser as a key.</p>
+<pre><code>$ smh 'words|over sortLexBy id' &quot;hello my name is Dani&quot;
+ehllo my aemn is Dain
+</code></pre>
+<h3 id="sortlex">sortLex</h3>
+<p>"sortLex" is a shorthand for "sortLexBy id"</p>
+<h3 id="sortby">sortBy</h3>
+<p>"sortBy" sorts a <strong>List</strong> or a <strong>String</strong> focus using another focuser as a key.</p>
+<pre><code>$ smh '&lt;words&gt;|over sortBy len' &quot;hello my name is Dani&quot;
+my is name Dani hello
+</code></pre>
+<h3 id="sort">sort</h3>
+<p>"sort" is a shorthand for "sortBy id"</p>
+<h3 id="to-mapping">to (mapping)</h3>
+<p>"to" produces a mapping from a focuser list that takes in a <strong>String</strong> focus and produces <strong>exactly one</strong> <strong>String</strong> focus.</p>
+<pre><code>$ smh 'regex &quot;\[[^]]*\]&quot;|over to ({1:-1}.&lt;words.regex &quot;[^,]*&quot;&gt;.sum)' &quot;[1, 2, 3] [4, 5]&quot;
+6 9
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../getting-started/" class="btn btn-neutral float-left" title="Getting started"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../release-notes/" class="btn btn-neutral float-right" title="Release notes">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../getting-started/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../release-notes/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
