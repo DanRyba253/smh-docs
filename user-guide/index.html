@@ -610,7 +610,7 @@ is
 Dani
 </code></pre>
 <h3 id="over">over</h3>
-<p>"over" takes in a list of mappings separated by "&gt;", applies them to the focuses and reconstructs the original string.</p>
+<p>"over" takes in a list of mappings separated by ":", applies them to the focuses and reconstructs the original string.</p>
 <pre><code>$ smh 'words|over reverse' &quot;hello world my name is Dani&quot;
 olleh dlrow ym eman si inaD
 </code></pre>
@@ -641,8 +641,8 @@ Dani is name my world hello
 <p>"map" takes in a mapping and applies it to every element of a <strong>List</strong> or a <strong>String</strong>.</p>
 <p><em>Note:<br />
 "map" takes in a mapping</em> <strong><em>non-greedily</em></strong> <em>, i.e.<br />
-"map mapping1&gt;mapping2" == "(map mapping1)&gt;mapping2"</em>
-<em>To use multiple mappings, use parenthesis "map (mapping1&gt;mapping2)"</em></p>
+"map mapping1:mapping2" == "(map mapping1):mapping2"</em>
+<em>To use multiple mappings, use parenthesis "map (mapping1:mapping2)"</em></p>
 <pre><code>$ smh '&lt;words&gt;|over map len' &quot;hello world my name is Dani&quot;
 5 5 2 4 2 4
 </code></pre>
