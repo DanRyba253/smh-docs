@@ -564,7 +564,7 @@ is
 They are used in short-form if conditions.</p>
 <p>Logical focusers include: "isUpper", "isLower", "isDigit", "isAlpha", "isAlphaNum", "isSpace", "contains", "startsWith", "endsWith".</p>
 <h3 id="regex">regex</h3>
-<p>"regex" takes in a POSIX style regex and focuses on all substrings of a <strong>String</strong> focus that match it.</p>
+<p>"regex" takes in a Perl style regex and focuses on all substrings of a <strong>String</strong> focus that match it.</p>
 <pre><code>$ smh 'words.regex &quot;[a-z]+&quot;|get' &quot;hello world my name is Dani&quot;
 hello
 world
@@ -737,7 +737,7 @@ my is name Dani hello
 <p>"sort" is a shorthand for "sortBy id"</p>
 <h3 id="to-mapping">to (mapping)</h3>
 <p>"to" produces a mapping from a focuser list that takes in a <strong>String</strong> focus and produces <strong>exactly one</strong> <strong>String</strong> focus.</p>
-<pre><code>$ smh 'regex &quot;\[[^]]*\]&quot;|over to ({1:-1}.&lt;words.regex &quot;[^,]*&quot;&gt;.sum)' &quot;[1, 2, 3] [4, 5]&quot;
+<pre><code>$ smh 'regex &quot;\[.*?\]&quot;|over to ({1:-1}.&lt;words.regex &quot;[^,]*&quot;&gt;.sum)' &quot;[1, 2, 3] [4, 5]&quot;
 6 9
 </code></pre>
               
