@@ -140,6 +140,18 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#to-focuser">to (focuser)</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#el">el</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#kv">kv</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key">key</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#val">val</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#atkey">atKey</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#atidx">atIdx</a>
+    </li>
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#action-documentation">Action documentation</a>
@@ -593,6 +605,60 @@ hello
 </code></pre>
 <p><em>Note:<br />
 For more information on mappings, visit <a href="./#mapping-documentation">Mapping documentation</a></em></p>
+<h3 id="el">el</h3>
+<p>"el" parses a JSON array and focuses on each element.</p>
+<pre><code>$ smh 'el|get' &quot;[1,2,3,4,5]&quot;
+1
+2
+3
+4
+5
+</code></pre>
+<h3 id="kv">kv</h3>
+<p>"kv" parses a JSON object and focuses on each key-value pair, represented as a two-element <strong>List</strong> of <strong>Strings</strong></p>
+<pre><code>$ smh 'kv|get-tree' '{&quot;a&quot;:1,&quot;b&quot;:2,&quot;c&quot;:3}'
+[[&quot;\&quot;a\&quot;&quot;,&quot;1&quot;], [&quot;\&quot;b\&quot;&quot;,&quot;2&quot;], [&quot;\&quot;c\&quot;&quot;,&quot;3&quot;]]
+</code></pre>
+<h3 id="key">key</h3>
+<p>When given a string focus, "key" tries to parse it as a JSON object and focuses on all it's keys.<br />
+When given a key value pair (represented as a <em>List</em>), it focuses on the key (first element).</p>
+<pre><code>$ smh 'key|get' '{a:1, &quot;b&quot;:2, c:3}'
+a
+b
+c
+</code></pre>
+<pre><code>$ smh 'kv.if key=&quot;a&quot;.val|get' '{&quot;a&quot;:1,&quot;b&quot;:2,&quot;c&quot;:3}'
+1
+</code></pre>
+<p><em>Note:<br />
+Notice that "key" strips the quotes from the key, if it has them.</em></p>
+<h3 id="val">val</h3>
+<p>When given a string focus, "val" tries to parse it as a JSON object and focuses on all it's values.<br />
+When given a key value pair (represented as a <em>List</em>), it focuses on the value (second element).</p>
+<pre><code>$ smh 'val|get' '{a:1, &quot;b&quot;:&quot;2&quot;, c:3}'
+1
+&quot;2&quot;
+3
+</code></pre>
+<pre><code>$ smh 'kv.if val=&quot;2&quot;.key|get' '{&quot;a&quot;:1, &quot;b&quot;:2, &quot;c&quot;:3}'
+b
+</code></pre>
+<p><em>Note:<br />
+Notice that "val"</em> <strong><em>doesn't</em></strong> <em>strip the quotes from the value.</em></p>
+<h3 id="atkey">atKey</h3>
+<p>"atKey" parses it's focus as a JSON object and focuses on values associated with the given key.</p>
+<pre><code>$ smh 'atKey &quot;a&quot;|get' '{a:1, &quot;b&quot;:2, c:3}'
+1
+</code></pre>
+<p>*Note:<br />
+atKey "key" == kv.if key="key".val</p>
+<h3 id="atidx">atIdx</h3>
+<p>"atIdx" parses it's focus as a JSON array and focuses on the element at the given index.</p>
+<pre><code>$ smh 'atIdx 1|get' '[1,2,3,4,5]'
+2
+</code></pre>
+<p>*Note:<br />
+atIdx i == <el>.[i]</p>
 <h2 id="action-documentation">Action documentation</h2>
 <h3 id="get-tree">get-tree</h3>
 <p>"get-tree" displays the list of all focuses active at the end.</p>

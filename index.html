@@ -104,7 +104,8 @@
 <ul>
 <li><code>smh 'words.if len&gt;3|get' &lt; input_file</code> - display all words longer than 3 characters   </li>
 <li><code>smh 'words.[0]|over upper' "hello world"</code> - capitalize all words  </li>
-<li><code>smh 'lines.if startsWith "*".&lt;words&gt;.[2]|get' &lt; input_file</code> - display the third word in lines that start with an asterisk</li>
+<li><code>smh 'lines.if startsWith "*".&lt;words&gt;.[2]|get' &lt; input_file</code> - display the third word in lines that start with an asterisk  </li>
+<li><code>smh 'atKey "b"|over to &lt;el&gt;.sum' '{"a": 1, "b": [1, 2, 3, 4, 5]}'</code> - sum the values of a JSON array at the "b" key of a JSON object.</li>
 </ul>
 <p>Visit the <a href="getting-started/">getting started page</a> or the <a href="user-guide/">user guide</a> for more details and examples.</p>
               
@@ -155,5 +156,5 @@
 
 <!--
 MkDocs version : 1.5.3
-Build Date UTC : 2024-03-03 09:22:44.922180+00:00
+Build Date UTC : 2024-03-09 17:41:35.177175+00:00
 -->
