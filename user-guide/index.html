@@ -78,6 +78,8 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#ws">ws</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#collecting">collecting (%)</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#cols">cols</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#slice-focuser">slice (focuser)</a>
@@ -130,9 +132,41 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#sign-focuser">sign (focuser)</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#literal-constant-focusers">literal (constant) focusers</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#if">if</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#logical-focusers">Logical focusers</a>
+    <li class="toctree-l3"><a class="reference internal" href="#logical-focusers">logical focusers</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#isupper">isUpper</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#islower">isLower</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#isdigit">isDigit</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#isalpha">isAlpha</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#isalphanum">isAlphaNum</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#isspace">isSpace</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#isnumber">isNumber</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#contains">contains</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#startswith">startsWith</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#endswith">endsWith</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_2">&gt;, &lt;, &gt;=, &lt;=, ==, !=</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_3">&amp;&amp;, ||</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#all-any">all, any</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#not">not</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#regex">regex</a>
     </li>
@@ -313,12 +347,17 @@ world
 </code></pre>
 <h3 id="ws">ws</h3>
 <p>"ws" focuses on consequetive strings of whitespace characters.</p>
-<pre><code>$ smh '&lt;ws&gt;.len|get' &quot;a b c d e&quot;
+<pre><code>$ smh 'ws.len|get' &quot;a b c d e&quot;
 4
+</code></pre>
+<h3 id="collecting">collecting (%)</h3>
+<p>You can collect all the focuses, produced by a focuser into one <em>List</em> focus, that includes all of them, by using "%"</p>
+<pre><code>$ smh '%words|over reverse' &quot;hello world my name is Dani&quot;
+Dani is name my world hello
 </code></pre>
 <h3 id="cols">cols</h3>
 <p>"cols" focuses on every column within the input string. Columns are represented as <strong>Lists</strong> of words.</p>
-<pre><code>$ smh '&lt;cols&gt;.[0]|get' &quot;hello my\nname is Dani&quot;
+<pre><code>$ smh '%cols.[0]|get' &quot;hello my\nname is Dani&quot;
 hello
 name
 </code></pre>
@@ -343,7 +382,7 @@ e
 </code></pre>
 <h3 id="sortedlexby">sortedLexBy</h3>
 <p>"sortedLexBy" focuses on the lexicographically sorted version of a <strong>List</strong> or a <strong>String</strong>, using another focuser as a key.</p>
-<pre><code>$ mh 'sortedLexBy id|get' &quot;hello&quot;
+<pre><code>$ smh 'sortedLexBy id|get' &quot;hello&quot;
 ehllo
 </code></pre>
 <p><em>Note:<br />
@@ -354,7 +393,7 @@ ehllo
 <p>A shorthand for "sortedLexBy id"</p>
 <h3 id="minlexby">minLexBy</h3>
 <p>"minLexBy" focuses on the lexicographically smallest element in a <strong>List</strong> or a <strong>String</strong>, using another focuser as a key.</p>
-<pre><code>$ smh '&lt;words&gt;.minLexBy id|get' &quot;hello my name is Dani&quot;
+<pre><code>$ smh '%words.minLexBy id|get' &quot;hello my name is Dani&quot;
 Dani
 </code></pre>
 <p><em>Note:<br />
@@ -363,7 +402,7 @@ Dani
 <em>To use multiple focusers, use parenthesis "minLexBy (focuser1.focuser2)"</em></p>
 <h3 id="maxlexby">maxLexBy</h3>
 <p>"maxLexBy" focuses on the lexicographically largest element in a <strong>List</strong> or a <strong>String</strong>, using another focuser as a key.</p>
-<pre><code>$ smh '&lt;words&gt;.maxLexBy id|get' &quot;hello my name is Dani&quot;
+<pre><code>$ smh '%words.maxLexBy id|get' &quot;hello my name is Dani&quot;
 name
 </code></pre>
 <p><em>Note:<br />
@@ -376,7 +415,7 @@ name
 <p>A shorthand for "maxLexBy id"</p>
 <h3 id="sortedby">sortedBy</h3>
 <p>"sortedBy" focuses on the sorted version of a <strong>List</strong> or a <strong>String</strong>, using another focuser as a key.</p>
-<pre><code>$ smh '&lt;words&gt;.sortedBy len|get' &quot;hello my name is Dani&quot;
+<pre><code>$ smh '%words.sortedBy len|get' &quot;hello my name is Dani&quot;
 my
 is
 name
@@ -394,7 +433,7 @@ Focuses which which cannot be parsed as numbers are not sorted.</em></p>
 <p>A shorthand for "sortedBy id"</p>
 <h3 id="minby">minBy</h3>
 <p>"minBy" focuses on the first smallest element in a <strong>List</strong> or a <strong>String</strong>, using another focuser as a key.</p>
-<pre><code>$ smh '&lt;words&gt;.minBy len|get' &quot;Hello my name is Dani&quot;
+<pre><code>$ smh '%words.minBy len|get' &quot;Hello my name is Dani&quot;
 my
 </code></pre>
 <p><em>Note:<br />
@@ -413,7 +452,7 @@ Focuses which which cannot be parsed as numbers are not sorted.</em></p>
 <p><em>Note:<br />
 "maxBy" compares focuses by trying to parse them as numbers and comparing those.<br />
 Focuses which which cannot be parsed as numbers are not sorted.</em></p>
-<pre><code>$ smh '&lt;words&gt;.maxBy len|get' &quot;Hello my name is Dani&quot;
+<pre><code>$ smh '%words.maxBy len|get' &quot;Hello my name is Dani&quot;
 Hello
 </code></pre>
 <p><em>Note:<br />
@@ -439,21 +478,21 @@ Hello
 "len" produces a</em> <strong><em>Non-updatable</em></strong> <em>focus.</em></p>
 <h3 id="sum">sum</h3>
 <p>"sum" focuses on the sum of all elements in a <strong>List</strong> or a <strong>String</strong>, that can be parsed as numbers.</p>
-<pre><code>$ smh '&lt;words&gt;.sum|get' &quot;1 2 3&quot;
+<pre><code>$ smh '%words.sum|get' &quot;1 2 3&quot;
 6
 </code></pre>
 <p><em>Note:<br />
 "sum" produces a</em> <strong><em>Non-updatable</em></strong> <em>focus.</em></p>
 <h3 id="product">product</h3>
 <p>"product" focuses on the product of all elements in a <strong>List</strong> or a <strong>String</strong>, that can be parsed as numbers.</p>
-<pre><code>$ smh '&lt;words&gt;.product|get' &quot;1 2 3&quot;
+<pre><code>$ smh '%words.product|get' &quot;1 2 3&quot;
 6
 </code></pre>
 <p><em>Note:<br />
 "product" produces a</em> <strong><em>Non-updatable</em></strong> <em>focus.</em></p>
 <h3 id="average">average</h3>
 <p>"average" focuses on the average of all elements in a <strong>List</strong> or a <strong>String</strong>, that can be parsed as numbers.</p>
-<pre><code>$ smh '&lt;words&gt;.average 0|get' &quot;1 2 3&quot;
+<pre><code>$ smh '%words.average 0|get' &quot;1 2 3&quot;
 2
 </code></pre>
 <p><em>Note:<br />
@@ -535,46 +574,175 @@ Hello
 0
 -1
 </code></pre>
+<h3 id="literal-constant-focusers">literal (constant) focusers</h3>
+<p>Strings in double quotes and numbers in place of focusers are interpreted as a constant focuser, that always produces a single focus, equal to that string or number.</p>
+<pre><code>$ smh 'words.&quot;const&quot;|get' &quot;hello world my name is Dani&quot;
+const
+const
+const
+conct
+const
+const
+</code></pre>
 <h3 id="if">if</h3>
-<p>"if" conditionally focuses on the same focus that it was given, if it passes a provided <strong>condition</strong>.</p>
-<p>Valid <strong>conditions</strong> satisfy the following non-formal grammar:<br />
-<strong>&lt;condition&gt;</strong> := &lt;condition_long&gt;<br />
-<strong>&lt;condition&gt;</strong> := one or more comparisons, or short comparisons, optionally in parenthesis, separated by "&amp;&amp;" or "||"<br />
-<strong>&lt;comparison&gt;</strong> := [&lt;quantor&gt;] [&lt;value&gt;] &lt;operator&gt; [&lt;quantor&gt;] &lt;value&gt;<br />
-<strong>&lt;short_comparison&gt;</strong> := [&lt;quantor&gt;]  &lt;focuser&gt;<br />
-<strong>&lt;value&gt;</strong> := &lt;focusers&gt; | &lt;string_in_quotes&gt; | &lt;number&gt;<br />
-<strong>&lt;operator&gt;</strong> := "=" | "!=" | "&lt;" | "&gt;" | "&lt;=" | "&gt;="<br />
-<strong>&lt;quantor&gt;</strong> := "any" | "all"<br />
-<strong>&lt;focuser&gt;</strong> := any valid focuser<br />
-<strong>&lt;focusers&gt;</strong> := one or more valid focusers separated by dot '.'</p>
-<pre><code>$ smh 'words.if len&gt;3|get' &quot;hello world my name is Dani&quot;
+<p>"if" conditionally focuses on the same focus that it was given, if the provided focuser returns "1" </p>
+<pre><code>$ smh 'words.if &gt; len 3|get' &quot;hello world my name is Dani&quot;
 hello
 world
 name
 Dani
 </code></pre>
-<pre><code>$ smh 'words.if &gt;5|get' &quot;3 4 5 6 7&quot;
+<pre><code>$ smh 'words.if &gt; 5|get' &quot;3 4 5 6 7&quot;
 6
 7
 </code></pre>
-<pre><code>$ smh 'words.if abs=id &amp;&amp; != 0|get' &quot;-1 -2 0 1 2&quot;
+<pre><code>$ smh 'words.if &amp;&amp; (= abs id) (!= 0)|get' &quot;-1 -2 0 1 2&quot;
 1
 2
 </code></pre>
-<pre><code>$ smh 'words if any=&quot;h&quot;|get' &quot;hello world my name is Dani&quot;
+<pre><code>$ smh 'words.if any(each.=&quot;h&quot;)|get' &quot;hello world my name is Dani&quot;
 hello
 </code></pre>
-<pre><code>$ smh 'words' if all isLower' &quot;hello world my name is Dani&quot;
+<pre><code>$ smh 'words. if all (each.isLower)|get' &quot;hello world my name is Dani&quot;
 hello
 world
 my
 name
 is
 </code></pre>
-<h3 id="logical-focusers">Logical focusers</h3>
-<p>Logical focusers take in a <strong>String</strong> and produce a <strong><em>Non-updatable</em></strong> focus which is equal to either "1" or "0".
-They are used in short-form if conditions.</p>
-<p>Logical focusers include: "isUpper", "isLower", "isDigit", "isAlpha", "isAlphaNum", "isSpace", "contains", "startsWith", "endsWith".</p>
+<h3 id="logical-focusers">logical focusers</h3>
+<p>Logical focusers produce a <strong><em>Non-updatable</em></strong> focus which is equal to either "1" or "0".<br />
+They are used primarily with the "if" or "filter" focusers.</p>
+<h4 id="isupper">isUpper</h4>
+<p>"isUpper" produces "1" if the focus is all upper case, and "0" otherwise.</p>
+<pre><code>$ smh 'words.isUpper|get' &quot;hello world my name is DANI&quot;
+0
+0
+0
+0
+0
+1
+</code></pre>
+<h4 id="islower">isLower</h4>
+<p>"isLower" produces "1" if the focus is all lower case, and "0" otherwise.</p>
+<pre><code>$ smh 'words.isLower|get' &quot;hello world my name is Dani&quot;
+1
+1
+1
+1
+1
+0
+</code></pre>
+<h4 id="isdigit">isDigit</h4>
+<p>"isDigit" produces "1" if the focus is all digits, and "0" otherwise.</p>
+<pre><code>$ smh 'words.isDigit|get' &quot;hello world my name is 1234&quot;
+0
+0
+0
+0
+0
+1
+</code></pre>
+<h4 id="isalpha">isAlpha</h4>
+<p>"isAlpha" produces "1" if the focus is all letters, and "0" otherwise.</p>
+<pre><code>$ smh 'words.isAlpha|get' &quot;hello world my name is 1234&quot;
+1
+1
+1
+1
+1
+0
+</code></pre>
+<h4 id="isalphanum">isAlphaNum</h4>
+<p>"isAlphaNum" produces "1" if the focus is all letters or digits, and "0" otherwise.</p>
+<pre><code>$ smh 'words.isAlphaNum|get' &quot;he11o world my name is ____&quot;
+1
+1
+1
+1
+1
+0
+</code></pre>
+<h4 id="isspace">isSpace</h4>
+<p>"isSpace" produces "1" if the focus is all spaces, and "0" otherwise.</p>
+<pre><code>$ smh 'ws.isSpace|get' &quot;hello world my name is 1234&quot;
+1
+1
+1
+1
+1
+</code></pre>
+<h4 id="isnumber">isNumber</h4>
+<p>"isNumber" produces "1" if the focus can be parsed as a number, and "0" otherwise.</p>
+<pre><code>$ smh 'words.isNumber|get' &quot;hello world 1.5 12&quot;
+0
+0
+1
+1
+</code></pre>
+<h4 id="contains">contains</h4>
+<p>"contains" produces "1" if the focus contains the given string, and "0" otherwise.</p>
+<pre><code>$ smh 'words.contains &quot;l&quot;|get' &quot;hello world my name is Dani&quot;
+1
+1
+0
+0
+0
+0
+</code></pre>
+<h4 id="startswith">startsWith</h4>
+<p>"startsWith" produces "1" if the focus starts with the given string, and "0" otherwise.</p>
+<pre><code>$ smh 'words.startsWith &quot;he&quot;|get' &quot;hello world my name is Dani&quot;
+1
+0
+0
+0
+0
+0
+</code></pre>
+<h4 id="endswith">endsWith</h4>
+<p>"endsWith" produces "1" if the focus ends with the given string, and "0" otherwise.</p>
+<pre><code>$ smh 'words.endsWith &quot;ani&quot;|get' &quot;hello world my name is Dani&quot;
+0
+0
+0
+0
+0
+1
+</code></pre>
+<h4 id="_2">&gt;, &lt;, &gt;=, &lt;=, ==, !=</h4>
+<p>These focusers take in two focusers and apply the given operator to their focuses.</p>
+<pre><code>$ smh 'words.if &gt; len 3|get' &quot;Hello world my name is Dani&quot;
+Hello
+world
+name
+Dani
+</code></pre>
+<p>Additionally for convenience, the first focuser can be omitted if it's "id".
+"&gt; f2 == &gt; id f2"</p>
+<p><em>Note:<br />
+"==" and "!=" can compare</em> <strong><em>Strings</em></strong> and <strong><em>Lists,</em></strong>
+<em>but other ones can only compare</em> <strong><em>Strings</em></strong>.</p>
+<h4 id="_3">&amp;&amp;, ||</h4>
+<p>These focusers take in two logical focusers and apply the given operator to their focuses.</p>
+<pre><code>$ smh 'words.if &amp;&amp; (&gt; len 2) (&lt; len 5)|get' &quot;Hello world my name is Dani&quot;
+name
+Dani
+</code></pre>
+<h4 id="all-any">all, any</h4>
+<p>These focusers take in a focuser and check if all/any of their focuses are equal to "1"</p>
+<pre><code>$ smh 'words.if any (each.isUpper)|get' &quot;hello woRld my nAme is Dani&quot;
+woRld
+nAme
+Dani
+</code></pre>
+<h4 id="not">not</h4>
+<p>"not" flips its focus from "1" to "0" and vice versa.</p>
+<pre><code>$ smh 'words.if (any (each.isUpper).not)|get' &quot;hello woRld my nAme is Dani&quot;
+hello
+my
+is
+</code></pre>
 <h3 id="regex">regex</h3>
 <p>"regex" takes in a Perl style regex and focuses on all substrings of a <strong>String</strong> focus that match it.</p>
 <pre><code>$ smh 'words.regex &quot;[a-z]+&quot;|get' &quot;hello world my name is Dani&quot;
@@ -587,7 +755,7 @@ ani
 </code></pre>
 <h3 id="filter">filter</h3>
 <p>"filter" works like "if", but instead of filtering the focus itself, it filters elements of a <strong>List</strong> or a <strong>String</strong> and focuses on a sub-list or a sub-string, that contains all the elements that passed.</p>
-<pre><code>$ smh '&lt;words&gt;.filter len&gt;3|get' &quot;hello world my name is Dani&quot;
+<pre><code>$ smh '%words.filter &gt; len 3|get' &quot;hello world my name is Dani&quot;
 hello
 world
 name
@@ -595,7 +763,7 @@ Dani
 </code></pre>
 <h3 id="to-focuser">to (focuser)</h3>
 <p>"to" can convert a <strong>mapping</strong> list into a <strong><em>Non-updatable</em></strong> focuser.</p>
-<pre><code>$ smh '&lt;words&gt;.to reverse|get' &quot;hello world my name is Dani&quot;
+<pre><code>$ smh '%words.to reverse|get' &quot;hello world my name is Dani&quot;
 Dani
 is
 name
@@ -627,7 +795,7 @@ a
 b
 c
 </code></pre>
-<pre><code>$ smh 'kv.if key=&quot;a&quot;.val|get' '{&quot;a&quot;:1,&quot;b&quot;:2,&quot;c&quot;:3}'
+<pre><code>$ smh 'kv.if = key &quot;a&quot;.val|get' '{&quot;a&quot;:1,&quot;b&quot;:2,&quot;c&quot;:3}'
 1
 </code></pre>
 <p><em>Note:<br />
@@ -640,7 +808,7 @@ When given a key value pair (represented as a <em>List</em>), it focuses on the 
 &quot;2&quot;
 3
 </code></pre>
-<pre><code>$ smh 'kv.if val=&quot;2&quot;.key|get' '{&quot;a&quot;:1, &quot;b&quot;:2, &quot;c&quot;:3}'
+<pre><code>$ smh 'kv.if = val &quot;2&quot;.key|get' '{&quot;a&quot;:1, &quot;b&quot;:2, &quot;c&quot;:3}'
 b
 </code></pre>
 <p><em>Note:<br />
@@ -651,14 +819,14 @@ Notice that "val"</em> <strong><em>doesn't</em></strong> <em>strip the quotes fr
 1
 </code></pre>
 <p>*Note:<br />
-atKey "key" == kv.if key="key".val</p>
+atKey "key" == kv.if = key "key".val</p>
 <h3 id="atidx">atIdx</h3>
 <p>"atIdx" parses it's focus as a JSON array and focuses on the element at the given index.</p>
 <pre><code>$ smh 'atIdx 1|get' '[1,2,3,4,5]'
 2
 </code></pre>
 <p>*Note:<br />
-atIdx i == <el>.[i]</p>
+atIdx i == %el.[i]</p>
 <h2 id="action-documentation">Action documentation</h2>
 <h3 id="get-tree">get-tree</h3>
 <p>"get-tree" displays the list of all focuses active at the end.</p>
@@ -695,7 +863,7 @@ hello world
 </code></pre>
 <h3 id="reverse">reverse</h3>
 <p>"reverse" reverses a <strong>List</strong> or a <strong>String</strong>.</p>
-<pre><code>$ smh '&lt;words&gt;|over reverse' &quot;hello world my name is Dani&quot;
+<pre><code>$ smh '%words|over reverse' &quot;hello world my name is Dani&quot;
 Dani is name my world hello
 </code></pre>
 <h3 id="len-mapping">len (mapping)</h3>
@@ -709,7 +877,7 @@ Dani is name my world hello
 "map" takes in a mapping</em> <strong><em>non-greedily</em></strong> <em>, i.e.<br />
 "map mapping1:mapping2" == "(map mapping1):mapping2"</em>
 <em>To use multiple mappings, use parenthesis "map (mapping1:mapping2)"</em></p>
-<pre><code>$ smh '&lt;words&gt;|over map len' &quot;hello world my name is Dani&quot;
+<pre><code>$ smh '%words|over map len' &quot;hello world my name is Dani&quot;
 5 5 2 4 2 4
 </code></pre>
 <h3 id="append">append</h3>
@@ -796,14 +964,14 @@ ehllo my aemn is Dain
 <p>"sortLex" is a shorthand for "sortLexBy id"</p>
 <h3 id="sortby">sortBy</h3>
 <p>"sortBy" sorts a <strong>List</strong> or a <strong>String</strong> focus using another focuser as a key.</p>
-<pre><code>$ smh '&lt;words&gt;|over sortBy len' &quot;hello my name is Dani&quot;
+<pre><code>$ smh '%words|over sortBy len' &quot;hello my name is Dani&quot;
 my is name Dani hello
 </code></pre>
 <h3 id="sort">sort</h3>
 <p>"sort" is a shorthand for "sortBy id"</p>
 <h3 id="to-mapping">to (mapping)</h3>
 <p>"to" produces a mapping from a focuser list that takes in a <strong>String</strong> focus and produces <strong>exactly one</strong> <strong>String</strong> focus.</p>
-<pre><code>$ smh 'regex &quot;\[.*?\]&quot;|over to ({1:-1}.&lt;words.regex &quot;[^,]*&quot;&gt;.sum)' &quot;[1, 2, 3] [4, 5]&quot;
+<pre><code>$ smh 'regex &quot;\[.*?\]&quot;|over to ({1:-1}.%(words.regex &quot;[^,]*&quot;).sum)' &quot;[1, 2, 3] [4, 5]&quot;
 6 9
 </code></pre>
               
